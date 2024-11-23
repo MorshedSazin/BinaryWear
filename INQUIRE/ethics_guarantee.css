@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+h2 {
+    color: #e74c3c;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+ul li strong {
+    color: #2c3e50;
+}
+
+section {
+    margin: 20px 0;
+}
+
+section .closing {
+    text-align: center;
+    font-style: italic;
+    color: #7f8c8d;
+}
+
+section .ethics, section .guarantee {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+section .ethics ul, section .guarantee ul {
+    padding-left: 20px;
+}
+
+section .ethics ul li, section .guarantee ul li {
+    border-left: 4px solid #e74c3c;
+    padding-left: 10px;
+    margin-left: 20px;
+}
+
+section .ethics ul li:hover, section .guarantee ul li:hover {
+    background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 15px;
+    }
+}
