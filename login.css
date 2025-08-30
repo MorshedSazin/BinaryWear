@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.py-20.bg-gray-900 {
+    flex-grow: 1;
+}

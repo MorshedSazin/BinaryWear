@@ -1,0 +1,67 @@
+#image-preview-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+#modal-image {
+    margin: auto;
+    display: block;
+    width: auto;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+#close-modal {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#close-modal:hover,
+#close-modal:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.product-color:checked + div {
+    border-color: #4ade80; /* green-400 */
+    box-shadow: 0 0 5px #4ade80;
+}
+
+.img-zoom-container {
+  position: relative;
+}
+
+.img-zoom-lens {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  width: 100px;
+  height: 100px;
+  z-index: 10;
+  display: none; /* Hidden by default */
+}
+
+.img-zoom-result {
+  border: 1px solid #d4d4d4;
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(20px, -50%);
+  display: none;
+  background-repeat: no-repeat;
+  z-index: 10;
+}
