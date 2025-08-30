@@ -35,10 +35,6 @@
             <!-- Right: Search, Cart, Profile/Login -->
             <div class="flex items-center space-x-6 flex-grow justify-end">
                 <a href="about.php" class="hover:text-green-400 transition-colors duration-300 hidden md:block">ABOUT</a>
-                <div class="relative hidden md:block">
-                    <input type="text" id="search-bar" placeholder="Search..." class="bg-gray-700 text-white rounded-md pl-10 pr-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 w-48">
-                    <i class="fas fa-search fa-lg absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                </div>
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <a href="logout.php" id="logout-btn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded hidden md:inline-block">Sign Out</a>
                 <?php else: ?>
@@ -90,7 +86,7 @@
                 </div>
                 <div class="mb-4">
                     <label for="email" class="block text-green-400 font-bold mb-2">Email Address</label>
-                    <input type="email" id="email" name="email" class="w-full bg-gray-700 text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" required value="<?php echo isset($_SESSION['form_data']['email']) ? htmlspecialchars($_SESSION['form_data']['email']) : ''; ?>">
+                    <input type="email" id="email" name="email" placeholder=".com/.edu" class="w-full bg-gray-700 text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" required value="<?php echo isset($_SESSION['form_data']['email']) ? htmlspecialchars($_SESSION['form_data']['email']) : ''; ?>">
                     <span id="email-error" class="error-message"></span>
                 </div>
                 <div class="mb-4">
@@ -106,8 +102,8 @@
                     <span id="address-error" class="error-message"></span>
                 </div>
                 <div class="mb-4">
-                    <label for="education" class="block text-green-400 font-bold mb-2">Current Education</label>
-                    <input type="text" id="education" name="education" class="w-full bg-gray-700 text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" required value="<?php echo isset($_SESSION['form_data']['education']) ? htmlspecialchars($_SESSION['form_data']['education']) : ''; ?>">
+                    <label for="education" class="block text-green-400 font-bold mb-2">Currently i'm a</label>
+                    <input type="text" id="education" name="education" placeholder="student or employee" class="w-full bg-gray-700 text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" required value="<?php echo isset($_SESSION['form_data']['education']) ? htmlspecialchars($_SESSION['form_data']['education']) : ''; ?>">
                     <span id="education-error" class="error-message"></span>
                     <?php if (isset($_SESSION['education_error'])): ?>
                         <span class="error-message"><?php echo $_SESSION['education_error']; unset($_SESSION['education_error']); ?></span>
@@ -115,7 +111,7 @@
                 </div>
                 <div class="mb-4">
                     <label for="linux-distro" class="block text-green-400 font-bold mb-2">Favorite Linux Distro</label>
-                    <input type="text" id="linux-distro" name="linux-distro" value="ARCH" class="w-full bg-gray-700 text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" required value="<?php echo isset($_SESSION['form_data']['linux-distro']) ? htmlspecialchars($_SESSION['form_data']['linux-distro']) : ''; ?>">
+                    <input type="text" id="linux-distro" name="linux-distro" placeholder="archlinux" class="w-full bg-gray-700 text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" required value="<?php echo isset($_SESSION['form_data']['linux-distro']) ? htmlspecialchars($_SESSION['form_data']['linux-distro']) : ''; ?>">
                     <span id="linux-distro-error" class="error-message"></span>
                     <?php if (isset($_SESSION['linux_distro_error'])): ?>
                         <span class="error-message"><?php echo $_SESSION['linux_distro_error']; unset($_SESSION['linux_distro_error']); ?></span>

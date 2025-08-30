@@ -49,8 +49,8 @@ if (!preg_match('/^\+880/', $phone) || strlen($phone) < 14) {
     header("Location: signin.php");
     exit();
 }
-//validate education (BCSE, COLLEGE,SCHOOL, EMPLOYEE)
-$valid_education = ['BCSE', 'COLLEGE', 'SCHOOL', 'EMPLOYEE'];
+//validate education ('STUDENT','EMPLOYEE')
+$valid_education = ['STUDENT', 'EMPLOYEE'];
 if (!in_array(strtoupper($education), $valid_education)) {
     $_SESSION['education_error'] = "Enter valid info for education.";
     header("Location: signin.php");
@@ -59,6 +59,7 @@ if (!in_array(strtoupper($education), $valid_education)) {
 
 
 //FAVORITE LINUX DISTRO
+/*
 $valid_distros = [
     'UBUNTU', 'MINT', 'ZORIN OS', 'ELEMENTARY OS', 'ARCH', 'GENTOO',
     'SLACKWARE', 'VOID LINUX', 'PUPPY LINUX', 'BODHI LINUX', 'TINY CORE LINUX',
@@ -70,6 +71,7 @@ if (!in_array(strtoupper($linux_distro), $valid_distros)) {
     header("Location: signin.php");
     exit();
 }
+ */
 
 // Validate password
 if (strlen($password) < 10 || !preg_match('/[A-Z]/', $password) || !preg_match('/[a-z]/', $password) || !preg_match('/[0-9]/', $password) || !preg_match('/[^A-Za-z0-9]/', $password)) {

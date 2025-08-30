@@ -25,14 +25,10 @@
             <!-- Right: Search, Cart, Profile/Login -->
             <div class="flex items-center space-x-6 flex-grow justify-end">
                 <a href="about.php" class="hover:text-green-400 transition-colors duration-300 hidden md:block">ABOUT</a>
-                <div class="relative hidden md:block">
-                    <input type="text" id="search-bar" placeholder="Search..." class="bg-gray-700 text-white rounded-md pl-10 pr-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 w-48">
-                    <i class="fas fa-search fa-lg absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                </div>
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <a href="logout.php" id="logout-btn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded hidden md:inline-block">Sign Out</a>
                 <?php else: ?>
-                    <a href="signin.php" id="signin-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded hidden md:inline-block">Sign In</a>
+                    <a href="signup.php" id="signin-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded hidden md:inline-block">Sign Up</a>
                     <a href="login.php" id="login-btn" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded hidden md:inline-block">Login</a>
                 <?php endif; ?>
                 <button id="menu-btn" class="md:hidden text-2xl"><i class="fas fa-bars"></i></button>
@@ -45,7 +41,7 @@
             <?php if (isset($_SESSION['user_id'])): ?>
                 <a href="logout.php" class="block mx-6 my-2 text-center text-sm bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Sign Out</a>
             <?php else: ?>
-                <a href="signin.php" class="block mx-6 my-2 text-center text-sm bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Sign In</a>
+                <a href="signup.php" class="block mx-6 my-2 text-center text-sm bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Sign Up</a>
                 <a href="login.php" class="block mx-6 my-2 text-center text-sm bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Login</a>
             <?php endif; ?>
         </div>
@@ -71,7 +67,7 @@
                 </form>
 
                 <div class="text-center mt-6">
-                    <p class="text-gray-400">Don't have an account? <a href="signin.php" class="text-green-400 hover:underline">Sign up</a></p>
+                    <p class="text-gray-400">Don't have an account? <a href="signup.php" class="text-green-400 hover:underline">Sign up</a></p>
                 </div>
             </div>
         </div>

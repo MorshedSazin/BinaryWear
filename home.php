@@ -27,12 +27,12 @@
                     <input type="text" id="search-bar" placeholder="Search..." class="bg-gray-700 text-white rounded-md pl-10 pr-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 w-48">
                     <i class="fas fa-search fa-lg absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                 </div>
-                
                 <a href="order.php" id="order-now-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Order Now</a>
-                <?php if (isset($_SESSION['user_id'])): ?>
+                <?php if (isset($_SESSION['user_id'])):
+                 ?>
                     <a href="logout.php" id="logout-btn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded hidden md:inline-block">Sign Out</a>
                 <?php else: ?>
-                    <a href="signin.php" id="signin-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded hidden md:inline-block">Sign In</a>
+                    <a href="signup.php" id="signin-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded hidden md:inline-block">Sign Up</a>
                     <a href="login.php" id="login-btn" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded hidden md:inline-block">Login</a>
                 <?php endif; ?>
                 <button id="menu-btn" class="md:hidden text-2xl"><i class="fas fa-bars"></i></button>
@@ -43,10 +43,11 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-90">
             <a href="about.php" class="block px-6 py-3 text-sm hover:bg-gray-800 transition-colors duration-300">ABOUT</a>
-            <?php if (isset($_SESSION['user_id'])): ?>
+            <?php if (isset($_SESSION['user_id'])):
+                 ?>
                 <a href="logout.php" class="block mx-6 my-2 text-center text-sm bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Sign Out</a>
             <?php else: ?>
-                <a href="signin.php" class="block mx-6 my-2 text-center text-sm bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Sign In</a>
+                <a href="signup.php" class="block mx-6 my-2 text-center text-sm bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Sign Up</a>
                 <a href="login.php" class="block mx-6 my-2 text-center text-sm bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Login</a>
             <?php endif; ?>
         </div>
@@ -58,102 +59,113 @@
         <div class="container mx-auto relative z-10">
             <h1 class="text-6xl font-extrabold tracking-tighter text-green-400">GEAR FOR THE DIGITAL AGE</h1>
             <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-300">High-performance apparel for developers, hackers, and tech innovators.</p>
-            <a href="#" class="mt-10 inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-10 rounded-full transition-transform duration-300 transform hover:scale-105">
-                EXPLORE COLLECTION
-            </a>
+            <div class="mt-8 bg-green-500 text-white py-4 px-8 rounded-lg inline-block shadow-lg">
+                <p class="text-xl font-bold">Pre-order is up till Oct-31, and get 20% discount in each product.</p>
+            </div>
         </div>
     </section>
 
     <!-- Products Section -->
     <section class="py-20 bg-gray-900">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12 text-green-400">Featured Gear</h2>
+            <?php
+            // Product data array
+            $products = [
+                [
+                    'name' => 'free_for_freedom',
+                    'image' => 'assets/FREE_FOR_FREEDOM.png',
+                    'price' => 599,
+                    'stock' => 10,
+                    'colors' => [
+                        ['color' => '#ffffff', 'stock' => 10],
+                        ['color' => '#8c00bf', 'stock' => 10],
+                        ['color' => '#00ff00', 'stock' => 0]
+                    ]
+                ],
+                [
+                    'name' => 'free_for_freedom_man',
+                    'image' => 'assets/FREE_FOR_FREEDOM_MAN.jpg',
+                    'price' => 599,
+                    'stock' => 10,
+                    'colors' => [
+                        ['color' => '#1793d1', 'stock' => 10],
+                        ['color' => '#ffffff', 'stock' => 10],
+                        ['color' => '#808080', 'stock' => 0]
+                    ]
+                ],
+                [
+                    'name' => 'I_USE_ARCH_BTW',
+                    'image' => 'assets/I_USE_ARCH_BTW.jpg',
+                    'price' =>699,
+                    'stock' => 10,
+                    'colors' => [
+                        ['color' => '#000000', 'stock' => 0],
+                        ['color' => '#ffffff', 'stock' => 10],
+                        ['color' => '#1793d1', 'stock' => 0]
+                    ]
+                ],
+                [
+                    'name' => 'vim_no_looking_back',
+                    'image' => 'assets/VIM.png',
+                    'price' => 450,
+                    'stock' => 10, // This item is out of stock
+                    'colors' => [
+                        ['color' => '#000000', 'stock' => 10],
+                        ['color' => '#ffffff', 'stock' => 0],
+                        ['color' => '#019833', 'stock' => 0]
+                    ]
+                ]
+            ];
+            ?>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-                <!-- Product 1: I Use Arch Btw -->
-                <div class="product-card rounded-lg overflow-hidden shadow-lg hover:shadow-green-500/50 transition-shadow duration-300 group">
-                    <div class="overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Faded Black T-Shirt with text I Use Arch Btw" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2">"I Use Arch Btw" Tee</h3>
-                        <p class="text-green-400 text-lg">450 BDT</p>
-                        <div class="mt-4 flex items-center justify-between">
-                            <select class="bg-gray-700 text-white rounded-md px-2 py-1 product-size">
-                                <option selected disabled>Size</option>
-                                <option>S</option>
-                                <option>M</option>
-                                <option>L</option>
-                                <option>XL</option>
-                                <option>XXL</option>
-                            </select>
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-green-600 product-select" data-product-name="I Use Arch Btw Tee">
+                <?php foreach ($products as $product): ?>
+                    <div class="product-card rounded-lg overflow-hidden shadow-lg hover:shadow-<?php echo ($product['stock'] > 0) ? 'green' : 'red'; ?>-500/50 transition-shadow duration-300 group">
+                        <div class="overflow-hidden">
+                            <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500 previewable">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2"><?php echo $product['name']; ?></h3>
+                            <div class="flex items-center justify-between mb-4">
+                                <p class="text-green-400 text-lg font-bold"><?php echo number_format($product['price'] * 0.8, 2); ?> BDT <span class="text-gray-500 line-through ml-2"><?php echo number_format($product['price'], 2); ?> BDT</span></p>
+                                <?php if (isset($product['colors'])):
+                                 ?>
+                                    <div class="flex space-x-2">
+                                        <?php foreach ($product['colors'] as $index => $color_data): ?>
+                                            <?php if ($color_data['stock'] > 0): ?>
+                                                <label class="relative">
+                                                    <input type="radio" class="absolute opacity-0 h-0 w-0 product-color" name="color-<?php echo $product['name']; ?>" value="<?php echo $color_data['color']; ?>" <?php echo ($index === 0) ? 'checked' : ''; ?>>
+                                                    <div class="w-6 h-6 rounded-full border-2 border-gray-600 cursor-pointer" style="background-color: <?php echo $color_data['color']; ?>;"></div>
+                                                </label>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <select class="bg-gray-700 text-white rounded-md px-2 py-1 product-size">
+                                    <option selected disabled>Size</option>
+                                    <option>S</option>
+                                    <option>M</option>
+                                    <option>L</option>
+                                    <option>XL</option>
+                                    <option>XXL</option>
+                                </select>
+                                <input type="number" class="bg-gray-700 text-white rounded-md px-2 py-1 w-20 product-quantity" value="1" min="1" data-stock="<?php echo $product['stock']; ?>">
+                            </div>
+                            <div class="mt-4 flex items-center justify-between">
+                                <?php if ($product['stock'] > 0): ?>
+                                    <span class="text-green-500 font-bold stock-status">Available</span>
+                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-green-600 product-select" data-product-name="<?php echo htmlspecialchars($product['name']); ?>" data-price="<?php echo $product['price'] * 0.8; ?>">
+                                <?php else: ?>
+                                    <span class="text-red-500 font-bold stock-status">Out of Stock</span>
+                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-green-600 product-select" data-product-name="<?php echo htmlspecialchars($product['name']); ?>" data-price="<?php echo $product['price'] * 0.8; ?>" disabled>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Product 2: Sudo Make Me a Sandwich -->
-                <div class="product-card rounded-lg overflow-hidden shadow-lg hover:shadow-green-500/50 transition-shadow duration-300 group">
-                    <div class="overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Faded Blue T-Shirt with text Sudo Make Me a Sandwich" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2">"Sudo Sandwich" Tee</h3>
-                        <p class="text-green-400 text-lg">450 BDT</p>
-                        <div class="mt-4 flex items-center justify-between">
-                            <select class="bg-gray-700 text-white rounded-md px-2 py-1 product-size">
-                                <option selected disabled>Size</option>
-                                <option>S</option>
-                                <option>M</option>
-                                <option>L</option>
-                                <option>XL</option>
-                                <option>XXL</option>
-                            </select>
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-green-600 product-select" data-product-name="Sudo Sandwich Tee">
-                        </div>
-                    </div>
-                </div>
-                <!-- Product 3: There's No Place Like ~ -->
-                <div class="product-card rounded-lg overflow-hidden shadow-lg hover:shadow-green-500/50 transition-shadow duration-300 group">
-                    <div class="overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=1915&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Faded Gray T-Shirt with text There's No Place Like ~" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2">"No Place Like ~" Tee</h3>
-                        <p class="text-green-400 text-lg">450 BDT</p>
-                        <div class="mt-4 flex items-center justify-between">
-                            <select class="bg-gray-700 text-white rounded-md px-2 py-1 product-size">
-                                <option selected disabled>Size</option>
-                                <option>S</option>
-                                <option>M</option>
-                                <option>L</option>
-                                <option>XL</option>
-                                <option>XXL</option>
-                            </select>
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-green-600 product-select" data-product-name="No Place Like ~ Tee">
-                        </div>
-                    </div>
-                </div>
-                <!-- Product 4: It Works On My Machine -->
-                <div class="product-card rounded-lg overflow-hidden shadow-lg hover:shadow-green-500/50 transition-shadow duration-300 group">
-                    <div class="overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=1915&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Faded White T-Shirt with text It Works On My Machine" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2">"It Works On My Machine" Tee</h3>
-                        <p class="text-green-400 text-lg">450 BDT</p>
-                        <div class="mt-4 flex items-center justify-between">
-                            <select class="bg-gray-700 text-white rounded-md px-2 py-1 product-size">
-                                <option selected disabled>Size</option>
-                                <option>S</option>
-                                <option>M</option>
-                                <option>L</option>
-                                <option>XL</option>
-                                <option>XXL</option>
-                            </select>
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-green-600 product-select" data-product-name="It Works On My Machine Tee">
-                        </div>
-                    </div>
-                </div>
-                <!-- Product 5: rm -rf / -->
+                <?php endforeach; ?>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
@@ -170,5 +182,13 @@
     </footer>
 
     <script src="script.js"></script>
+    <!-- Image Preview Modal -->
+    <div id="image-preview-modal" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 hidden justify-center items-center z-50">
+        <span class="absolute top-5 right-10 text-white text-4xl font-bold cursor-pointer bg-gray-800 rounded-full p-2" id="close-modal">&times;</span>
+        <div class="bg-white rounded-lg shadow-lg img-zoom-container">
+            <img class="max-w-full max-h-full mx-auto" id="modal-image" src="">
+        </div>
+        <div id="zoom-result" class="img-zoom-result"></div>
+    </div>
 </body>
 </html>
